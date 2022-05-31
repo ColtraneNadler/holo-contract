@@ -90,14 +90,14 @@ contract HoloNFT is ERC721A, Ownable, ReentrancyGuard {
 
     function mint(address receiver, uint quantity) external payable {
         require(publicMint, "Mint is not public!");
-        require(_totalMinted() < capSupply - 4444 - quantity, "Sold out.");
+        require(_totalMinted() <= capSupply - 4444 - quantity, "Sold out.");
         if(quantity > 5) quantity = 5;
         require(msg.value >= quantity * price, "You did not pay enough");
         _mint(receiver, quantity);
     }
 
     function xoidMint(address receiver, uint[] memory ownedTokens) external {
-        require(_totalMinted() < capSupply, "Sold out.");
+        require(_totalMinted() <= capSupply, "Sold out.");
         // filter out tokens that have already been redeemed
         (uint[] memory redeemableXoids, uint totalTokens) = filterRedeemableTokens(receiver, ownedTokens);
         for(uint j = 0; j < redeemableXoids.length; j++) redeemed_xoids[redeemableXoids[j]] = 1;
@@ -110,7 +110,7 @@ contract HoloNFT is ERC721A, Ownable, ReentrancyGuard {
         bytes memory signature
     ) external {
         require(redeemed_frens[receiver] == 0, "You already received an NFT!");
-        require(_totalMinted() < CAP_SUPPLY - 4444 - 1, "Sold out.");
+        require(_totalMinted() <= CAP_SUPPLY - 4444 - 1, "Sold out.");
         bytes32 msgHash = keccak256(
             abi.encode(receiver)
         );
