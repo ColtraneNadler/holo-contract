@@ -23,9 +23,8 @@ const holoContract = new web3.eth.Contract(
 	'0x88783ffc7191f0abb8ed27a06a0f9d6b75712ff2' // config.addresses.dev.xoid1
 );
 
-const publicKey = EthCrypto.publicKeyByPrivateKey(
-      '0x65dca0fc940570c6e1c803a46055dca4113066c12bd63db5774df174f7db74a4'
-  );
+let private_key = '0x65dca0fc940570c6e1c803a46055dca4113066c12bd63db5774df174f7db74a4';
+const publicKey = EthCrypto.publicKeyByPrivateKey(private_key);
 console.log(EthCrypto.publicKey.toAddress(publicKey))
 
 
@@ -47,8 +46,8 @@ function sign(address) {
 
 app.get('/check', async (req, res) => {
 	let { address } = req.query;
-	let whitelist = await Whitelist.findOne({ address: address.toLowerCase() });
-	if(!whitelist) return res.json({ success: false });
+	// let whitelist = await Whitelist.findOne({ address: address.toLowerCase() });
+	// if(!whitelist) return res.json({ success: false });
 
 	// let redeemed = await holoContract.methods.fren_redeemed(address).call();
 	// if(redeemed == '1') return res.json({ success: false });
