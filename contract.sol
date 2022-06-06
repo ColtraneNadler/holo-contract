@@ -15,6 +15,8 @@ contract XERC721 {
     function ownerOf(uint) public view returns (address) {}
 }
 
+
+
 contract HoloNFT is ERC721A, Ownable, ReentrancyGuard {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
@@ -110,7 +112,7 @@ contract HoloNFT is ERC721A, Ownable, ReentrancyGuard {
         bytes memory signature
     ) external {
         require(redeemed_frens[receiver] == 0, "You already received an NFT!");
-        require(_totalMinted() <= CAP_SUPPLY - 4444 - 1, "Sold out.");
+        require(_totalMinted() <= capSupply - 4444 - 1, "Sold out.");
         bytes32 msgHash = keccak256(
             abi.encode(receiver)
         );
@@ -136,7 +138,7 @@ contract HoloNFT is ERC721A, Ownable, ReentrancyGuard {
         baseURI = _baseURI();
     }
 
-    function withdraw(uint amount, address receiver) external onlyOwner {
+    function withdraw(uint amount, address payable receiver) external onlyOwner {
         receiver.send(amount);
     }
 }
