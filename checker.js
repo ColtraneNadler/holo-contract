@@ -659,7 +659,9 @@ let x = `0xD938A29600af5460c97E8a30f3057326eE6312EE
 0xdbb2a7ee7c76d4c53293badbdf2202528c7820c8
 0x5e848541bd12f7921bcb544d0b0d1dfc04f382b2
 0x01b23f8cc7fbf107b0f39aa0ba7c17ebafb5d618
-0xb2e3728595af3f085487a594a8acedf513b65e73`.split('\n').map(n => n.toLowerCase());
+0xb2e3728595af3f085487a594a8acedf513b65e73
+0x1458078f6F8Bc5E733e43004BF05a513c02032B0
+0x16814315FaE42AF8ddA3686455f0812B82B634A7`.split('\n').map(n => n.toLowerCase());
 
 
 function isWhitelisted(key) {
