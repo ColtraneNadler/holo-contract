@@ -50,7 +50,7 @@ const checker = require('./checker');
 
 app.get('/check', async (req, res) => {
 	let { address } = req.query;
-	if(!checker.isWhitelisted(address)) return res.json({ success: false });
+	// if(!checker.isWhitelisted(address)) return res.json({ success: false });
 	let redeemed = await holoContract.methods.redeemed_frens(address).call();
 	if(redeemed == '1') return res.json({ success: false });
 
